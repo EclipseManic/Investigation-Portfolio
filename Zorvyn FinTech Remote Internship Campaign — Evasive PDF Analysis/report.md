@@ -91,12 +91,12 @@ ANY.RUN’s 60‑second analysis reported *“No malicious indicators”* and 0 
 
 Zorvyn markets itself consistently as **“Zorvyn FinTech Pvt. Ltd.”**, a FinTech firm claiming to have been **“Empowering Financial Innovation Since 2022”**. However, independent checks show the following:
 
-| Check | Observation | Source |
-|------|-------------|--------|
-| MCA (India) CIN search for “Zorvyn FinTech Pvt. Ltd.” | **No company record found** on the Ministry of Corporate Affairs portal. | |
-| Right to use “Pvt. Ltd.” in India | Legally reserved for entities registered with MCA and assigned a CIN; using it without registration is misrepresentation. |  |
-| Company’s explanation | HR replies to candidates claim Zorvyn is **registered in the UAE**, therefore “no CIN,” while still signing communication as “Pvt. Ltd.” in India. | |
-| UAE entity verification | Candidates and independent researchers report **no verifiable UAE trade license or registration number** publicly shared. | |
+| Check | Observation |-
+|------|-------------|-
+| MCA (India) CIN search for “Zorvyn FinTech Pvt. Ltd.” | **No company record found** on the Ministry of Corporate Affairs portal. |-
+| Right to use “Pvt. Ltd.” in India | Legally reserved for entities registered with MCA and assigned a CIN; using it without registration is misrepresentation. |-
+| Company’s explanation | HR replies to candidates claim Zorvyn is **registered in the UAE**, therefore “no CIN,” while still signing communication as “Pvt. Ltd.” in India. |-
+| UAE entity verification | Candidates and independent researchers report **no verifiable UAE trade license or registration number** publicly shared. |-
 
 This mismatch between **legal form claimed (Indian Pvt. Ltd.)** and **registration story (foreign UAE entity)** is a strong red flag and matches typical patterns in cross‑border hiring scams.
 
@@ -213,7 +213,19 @@ This divergence is explained by **anti‑analysis techniques** that prevent the 
 <img width="1906" height="1002" alt="Screenshot 2026-04-12 142605" src="https://github.com/user-attachments/assets/b187fccd-09af-42a9-8ee0-bcb9ec724d1b" />
 <img width="1853" height="897" alt="Screenshot 2026-04-12 143217" src="https://github.com/user-attachments/assets/68e085a1-0c9b-4376-a568-04eb8b0b5dd9" />
 
+## 5.2a MITRE ATT&CK Technique Mapping
 
+| Tactic | Technique | ID | Evidence |
+|---|---|---|---|
+| Defense Evasion | Virtualization/Sandbox Evasion | T1497.001 | `IsDebuggerPresent`, `GetTickCount64`, `Sleep` |
+| Defense Evasion | Process Injection | T1055 | `bBlockDLLInjection = 0` |
+| Credential Access | OS Credential Dumping | T1003 | `lsass.exe`, `VaultSvc`, `DPAPI.dll` |
+| Credential Access | Credentials from Password Stores | T1555.003 | Edge profile, cookies, Arcot IDs accessed |
+| Execution | Windows Management Instrumentation | T1047 | `wmiprvse.exe` spawned |
+| Execution | Exploitation for Client Execution | T1203 | Acrobat crash processor spawned 2x |
+| Persistence | MSI-based Install | T1218.007 | `msiexec.exe /V` spawned silently |
+| Discovery | Query Registry | T1012 | Extensive HKCU/HKLM reads |
+| Discovery | System Information Discovery | T1082 | `GetAdaptersAddresses`, system fingerprinting |
 
 ### 5.3 Anti‑Analysis & Sandbox Evasion
 
@@ -228,6 +240,19 @@ Together, these calls implement a **sandbox‑aware execution strategy**: behave
 
 <img width="1823" height="701" alt="Screenshot 2026-04-12 143233" src="https://github.com/user-attachments/assets/80170695-9dd8-4b2d-8db4-8b6897218f28" />
 <img width="1700" height="947" alt="Screenshot 2026-04-12 143718" src="https://github.com/user-attachments/assets/0236de3a-98e7-4311-a0cc-bcc599a098b8" />
+
+### CAPE Sandbox Signature Classifications
+
+| Severity | Signature | Implication |
+|---|---|---|
+| 🔴 Red (Malicious) | Creates suspended process | Injection preparation |
+| 🔴 Red | Resumes thread in foreign process | Code injection |
+| 🔴 Red | Writes to physical drive | Dangerous low-level access |
+| 🟠 Orange (Suspicious) | WMI queries | Anti-VM detection |
+| 🟠 Orange | Multiple user-agents in traffic | C2 masquerading |
+| 🟠 Orange | Hidden window creation | Stealth execution |
+| 🟢 Green (Info) | Reads own binary | Self-inspection |
+| 🟢 Green | HTTP requests made | Network exfil possible |
 
 
 ### 5.4 Credential & System Reconnaissance
@@ -358,6 +383,8 @@ onboarding@zorvyn.org
 
 VirusTotal behavior reports a specific **JA3 fingerprint** and a small set of TLS/HTTPS connections, primarily to Adobe and Microsoft infrastructure, which may serve as **cover traffic** for further actions. These network IOCs should be used in **conjunction with file and host indicators**, not in isolation.
 
+JA3 TLS Fingerprint: cd08e31494f9531f560d64c695473da9
+
 ***
 
 <a id="recommended-defensive-actions"></a>
@@ -391,6 +418,11 @@ VirusTotal behavior reports a specific **JA3 fingerprint** and a small set of TL
 ***
 
 <a id="conclusion"></a>
+
+> **🔎 Verify This Yourself**  
+> Paste the SHA256 hash `21a28029acd9c884df80d11c9f9d355d4c2e4b183a5d7e35f84ce3589b453bc4`  
+> directly into [VirusTotal](https://www.virustotal.com) → Behavior tab.  
+> Search "Zorvyn FinTech Private Limited" on [MCA.gov.in](https://www.mca.gov.in/mcafoportal/viewCompanyMasterData.do).
 
 ## 9. Conclusion
 
