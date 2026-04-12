@@ -6,6 +6,7 @@
 > **Verdict:** High‑risk scam operation with evasive malware and financial/identity data harvesting intent
 
 ***
+<img width="1755" height="778" alt="image" src="https://github.com/user-attachments/assets/e93b10d4-ec46-4316-b1b7-87315d5deb9c" />
 
 
 ## Quick Navigation
