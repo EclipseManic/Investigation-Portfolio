@@ -82,6 +82,10 @@ SOC investigation of a Red Team attack simulation utilizing advanced JSP web she
 Includes PCAP analysis, WAF evasion detection, attack chain reconstruction (from encrypted payload delivery to PowerShell lateral movement), and the development of specific SIEM/EDR detection strategies.
 Report link  → [View Report](https://github.com/EclipseManic/SOC-Investigation-Portfolio/blob/main/Web%20Shell%20%26%20Java%20Exploitation%20Investigation/report.md)
 
+### • Zorvyn FinTech Remote Internship Campaign — Evasive PDF Analysis
+Multiple Indian students and freshers have reported receiving highly attractive remote internship offers from an entity calling itself “Zorvyn FinTech Pvt. Ltd.”, typically promising ₹35–45K/month stipends and PPOs up to ₹11–14 LPA for roles such as Cybersecurity Analyst, Data Analyst, Frontend Developer, and Backend Developer. Public OSINT and sandbox analysis of one such offer-letter PDF (SHA256 21a28029acd9c884df80d11c9f9d355d4c2e4b183a5d7e35f84ce3589b453bc4) show that the campaign combines social engineering, legal misrepresentation, evasive malware behavior, and aggressive collection of banking and identity data.\
+Report link  → [View Report](https://github.com/EclipseManic/SOC-Investigation-Portfolio/blob/main/Zorvyn%20FinTech%20Remote%20Internship%20Campaign%20%E2%80%94%20Evasive%20PDF%20Analysis/report.md)
+
 (Additional investigations will be added over time.)
 
 ---
