@@ -4,6 +4,10 @@
 > **Date:** 12 April 2026  
 > **Scope:** Technical malware analysis, fraud modus operandi, and company OSINT profile for Zorvyn FinTech “internship” offers  
 > **Verdict:** High‑risk scam operation with evasive malware and financial/identity data harvesting intent
+![Status](https://img.shields.io/badge/Status-Confirmed%20Scam-red)
+![AV Detection](https://img.shields.io/badge/AV%20Detection-0%2F64-critical)
+![MITRE Tactics](https://img.shields.io/badge/MITRE%20Tactics-9-orange)
+![Severity](https://img.shields.io/badge/Severity-HIGH-red)
 
 ***
 <img width="1762" height="789" alt="image" src="https://github.com/user-attachments/assets/d44d17bd-fb9a-4b66-bbb3-43ee5ccffaea" />
