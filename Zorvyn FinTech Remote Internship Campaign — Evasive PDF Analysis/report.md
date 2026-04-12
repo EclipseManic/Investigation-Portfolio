@@ -33,7 +33,7 @@ Multiple Indian students and freshers have reported receiving highly attractive 
 Although **0/64 antivirus engines on VirusTotal** flagged the file as malicious, behavioral sandboxes mapped multiple MITRE ATT&CK tactics, including **sandbox evasion, credential access, and process injection staging**. ANY.RUN’s default 60‑second run also reported "No threats detected", consistent with deliberate **timing‑based evasion**.
 
 OSINT further shows that Zorvyn:
-- **Has no CIN registration on India’s MCA portal** despite using the legal suffix “Pvt. Ltd.” in offer letters and emails.[^3][^4][^1]
+- **Has no CIN registration on India’s MCA portal** despite using the legal suffix “Pvt. Ltd.” in offer letters and emails.
 - Operates across **multiple inconsistent domains** (`zorvyn.io`, `zorvyn.org`, `zorvyn.co`) with **recent registrations** that do not match its claimed founding year of 2022.
 - Uses **fake or highly suspicious LinkedIn employee profiles** and AI‑generated office imagery to simulate legitimacy.
 - Asks selected candidates to submit **bank account details, Aadhaar, PAN and full home address before any verified onboarding**, framed as “stipend processing” and “welcome kit” workflows.
