@@ -186,6 +186,160 @@ This aligns with a **dual‑track fraud model**: one track harvesting personal/f
 
 ## 5. Technical Analysis of the Offer-Letter PDF
 
+## 5.0 Behavioral Overview — What This PDF Actually Does
+
+> ⚠️ **Analyst Note:** The following describes **confirmed behavioral indicators** 
+> observed across CAPE, Jujubox, and Zenbox sandbox engines. Full payload 
+> detonation was **not confirmed** due to deliberate sandbox evasion by the sample. 
+> All findings represent what was **observed and logged** — not assumed.
+
+---
+
+### Phase 1 — Environment Fingerprinting (Evasion First)
+
+Before executing any malicious logic, the PDF triggers a series of 
+environment checks to determine if it is running on a real victim machine 
+or inside a security analysis environment:
+
+| API Call | Purpose |
+|---|---|
+| `IsDebuggerPresent` | Detects attached debuggers or analysis tools |
+| `GetTickCount` / `GetTickCount64` | Checks if system clock is artificially accelerated (common in sandboxes) |
+| `Sleep()` | Stalls execution to outlast default sandbox timeout windows |
+| `GetAdaptersAddresses` | Enumerates network adapters to detect VM/sandbox network profiles |
+
+**Result:** If any check suggests an analysis environment, the payload 
+remains dormant — explaining the **0/64 VirusTotal AV result** and the 
+**"No threats detected" ANY.RUN verdict**. The file only proceeds on 
+what it determines to be a real endpoint.
+
+---
+
+### Phase 2 — Defense Removal
+
+Once environment checks pass, the sample disables a key protection 
+before attempting any credential access:
+
+```text
+Registry Write:
+SOFTWARE\Adobe\Acrobat Reader\DC\DLLInjection\bBlockDLLInjection = 0
+```
+
+Adobe Reader ships with a built-in DLL injection protection mechanism. 
+Setting this value to `0` **explicitly disables that protection**, 
+allowing foreign code to be injected into the trusted `Acrobat.exe` 
+process without triggering Adobe's own defenses. This is a preparation 
+step — not accidental behavior.
+
+---
+
+### Phase 3 — Credential & Data Access (Confirmed Behavioral Indicators)
+
+The following access attempts were **directly observed in sandbox logs**:
+
+**A. Browser Credential Decryption via DPAPI**
+```text
+Module loaded: C:\Windows\SYSTEM32\DPAPI.dll
+Files accessed:
+  Edge\User Data\Default\Secure Preferences
+  Edge\User Data\Default\Local State
+  INetCookies\ESE\
+```
+`DPAPI.dll` is Windows' native Data Protection API — the same component 
+browsers use to **encrypt saved passwords on disk**. Loading it alongside 
+direct access to browser profile files is the standard method used by 
+credential-stealing malware to **decrypt saved passwords without needing 
+to know the master key**. Session cookies stored here also allow 
+**authentication bypass without a password**, rendering 2FA ineffective.
+
+**B. Windows Credential Vault Access**
+```text
+Service opened: VaultSvc (Windows Credential Manager)
+Service opened: clipsvc  (Clipboard service)
+```
+`VaultSvc` is the service that manages Windows Credential Manager — 
+the store for saved Wi-Fi passwords, RDP credentials, Outlook login 
+details, and network share credentials. A PDF document has **no 
+legitimate reason** to open this service.
+
+**C. LSASS Process Context**
+```text
+Process observed in tree: lsass.exe (PID 716)
+```
+LSASS (Local Security Authority Subsystem Service) holds **active 
+session tokens, NTLM password hashes, and Kerberos tickets** in memory. 
+Its presence in the process tree aligns with MITRE T1003 (OS Credential 
+Dumping). Direct memory interaction was not confirmed within the sandbox 
+window, but its appearance is a significant indicator of credential 
+harvesting intent.
+
+**D. Enterprise Authentication Token Access**
+```text
+Files accessed:
+  C:\Users\<USER>\AppData\Roaming\arcot\ids
+  C:\Users\<USER>\Documents\ArcotIDs
+```
+Arcot IDs are enterprise SSO and 2FA authentication tokens (RSA Arcot 
+WebFort format). Accessing these paths indicates targeting of 
+**stored enterprise credentials beyond standard browser passwords**.
+
+---
+
+### Phase 4 — Silent Second-Stage Payload Delivery
+
+```text
+Process spawned: C:\Windows\System32\msiexec.exe /V
+Mutex created:   Global\_MSIExecute
+```
+
+Opening a PDF should **never** invoke Windows Installer (`msiexec.exe`). 
+The `/V` flag is a **silent installation switch** — it runs with no 
+visible window, no UAC prompt, and no user notification. The creation 
+of the `Global\_MSIExecute` mutex (which prevents two installs from 
+running simultaneously) confirms an **active install sequence was 
+initiated**. What was being installed was not captured within the 
+sandbox execution window, but this pattern is consistent with 
+**second-stage RAT or backdoor delivery** observed in known infostealer 
+families. [See CAPE Sandbox Signatures — Section 5.3]
+
+---
+
+### Phase 5 — Anti-Forensic Cleanup
+
+```text
+Created then DELETED:
+  HKEY_LOCAL_MACHINE\System\Acrobatviewercpp473
+  HKEY_LOCAL_MACHINE\SYSTEM\Acrobatbrokerserverdispatchercpp789
+```
+
+These registry keys were **created and removed within the same execution 
+session**. They do not exist in any legitimate Adobe documentation. Their 
+naming mimics Adobe software to blend in with legitimate registry entries, 
+while their deletion before session end is consistent with **anti-forensic 
+artifact cleanup** — a standard technique to hinder post-incident 
+investigation and timeline reconstruction.
+
+---
+
+### Confidence Assessment
+
+| Finding | Confidence | Basis |
+|---|---|---|
+| Sandbox evasion active | ✅ High | Direct API call logs |
+| DLL injection protection disabled | ✅ High | Registry write confirmed |
+| Browser credential access attempted | ✅ High | File paths + DPAPI load confirmed |
+| Windows Credential Vault accessed | ✅ High | VaultSvc service open confirmed |
+| LSASS credential dumping | ⚠️ Medium | Process tree context only, no direct dump confirmed |
+| Second-stage payload installed | ⚠️ Medium | msiexec spawned, payload not captured |
+| Data successfully exfiltrated | ❌ Not confirmed | Evasion prevented full sandbox detonation |
+
+> **Bottom line:** The behavioral evidence is consistent with an 
+> **evasive infostealer dropper**. Complete execution was not observed 
+> due to sandbox-aware timing logic. The combination of credential 
+> access APIs, DLL protection removal, silent MSI execution, and 
+> anti-forensic cleanup constitutes **sufficient grounds to classify 
+> this file as malicious with high confidence**.
+
 ### 5.1 File Characteristics
 
 Key metadata from sandbox and static inspection:
