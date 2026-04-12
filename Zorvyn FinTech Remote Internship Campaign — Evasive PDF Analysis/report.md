@@ -405,18 +405,9 @@ Taken together, the evidence strongly supports treating Zorvyn‑branded offers 
 
 ## References
 
-1. [report.md] -
+1.  [VT_Scan](https://www.virustotal.com/gui/file/21a28029acd9c884df80d11c9f9d355d4c2e4b183a5d7e35f84ce3589b453bc4/behavior)
 
 2. [any.run_reoprt.pdf](https://any.run/report/21a28029acd9c884df80d11c9f9d355d4c2e4b183a5d7e35f84ce3589b453bc4/cdb74be3-1bd9-4f93-add3-a18696fc6f13?_gl=1*qdzbg3*_gcl_au*NTI0MTk4ODguMTc3Mzg5NDAyMw..*FPAU*NTI0MTk4ODguMTc3Mzg5NDAyMw..*_ga*MTQyNzg5Njk2MS4xNzczODk0MDIw*_ga_53KB74YDZR*czE3NzU5ODUxNTAkbzQxJGcxJHQxNzc1OTg3NDIxJGo1MCRsMCRoMTc0ODMzMjA0Ng..) - File name: Offer_Letter_Manichand_Gupta.pdf [Full analysis](https://app.any.run/tasks/cdb74be3-1bd9-4f93-add3-a18696fc6f13)
-
-    [VT_Scan](https://www.virustotal.com/gui/file/21a28029acd9c884df80d11c9f9d355d4c2e4b183a5d7e35f84ce3589b453bc4/behavior)
-
-    [Zenbox](https://vtbehaviour.commondatastorage.googleapis.com/21a28029acd9c884df80d11c9f9d355d4c2e4b183a5d7e35f84ce3589b453bc4_Zenbox.html?GoogleAccessId=758681729565-rc7fgq07icj8c9dm2gi34a4cckv235v1@developer.gserviceaccount.com&Expires=1775987873&Signature=cxRnWFUb3ZfFDcTXPc3kMD6UGnzbah0MgxgwgueGcynRU3DDhLDUOZ9J%2BZWa7AD%2F1c7jI%2FeruenIPWDHtkv1OkHVQvde%2FhUmOmUQy8I9YDruVUoe4gHYs8cB9apl8OTkmYuD5bLWf6dSW2IiYj5p8ImAGH6SDrcV5d7iC2KwjIeyygg%2FJVUYQ5UPj3955RGCBgZiY6P%2Fq7QvtT6QAo8oeitcZv5c2X4EGhoomlLHEZQ9KbosMS%2B%2FsXNFOic6V6tmVAM3NoK6RT%2FXqZBEOpESqOVTmn2kS0Razr1U%2BZwpQPbe6mXWD9LZEmxTB9WVzwesPsAm6E8mJFgGxcJg%2F0ya%2Bw%3D%3D&response-content-type=text%2Fhtml;)
-
-    [VirusTotal Jujubox](https://vtbehaviour.commondatastorage.googleapis.com/21a28029acd9c884df80d11c9f9d355d4c2e4b183a5d7e35f84ce3589b453bc4_VirusTotal%20Jujubox.html?GoogleAccessId=758681729565-rc7fgq07icj8c9dm2gi34a4cckv235v1@developer.gserviceaccount.com&Expires=1775987901&Signature=ZlvZJmkC9qJdDe%2BbRaFY2NgABT0AB9VPE7zASTu8MK7G5wCtclD%2BimW9ifi5av2Qui5XJGZCwbc96kflqaQYcc9NMY%2Bie2T4V%2BDkxZFyTL1uJ%2B1Y%2Fgf6uNmftQkYX%2BOoN02dqlh6OLh8CpY99XkSOaJz7ffGW3wKEXFJGPu9gUOmAIdxAVrY3Rydkv7UyZA2fo%2BTDG%2FWioRThbcJ75lIRqHYHp%2FRKUO4nc3IFzrIxXbpFpsQwrwwQR%2BhEAhzpxvAC3L6xIR0VHi%2BX%2BuFt5Jq9Fib77fMuNTOmjX7XcydT7ONu0aUimX8hrsozmsweicCmj8hBHM238719kLSgsiAbw%3D%3D&response-content-type=text%2Fhtml;)
-
-    [CAPE Sandbox](https://vtbehaviour.commondatastorage.googleapis.com/21a28029acd9c884df80d11c9f9d355d4c2e4b183a5d7e35f84ce3589b453bc4_CAPE%20Sandbox.html?GoogleAccessId=758681729565-rc7fgq07icj8c9dm2gi34a4cckv235v1@developer.gserviceaccount.com&Expires=1775987926&Signature=rae%2BEsE40X8c%2FvWrNtHgG2qZn%2Bi31vjeAR%2BqyYbDViAuMgVVXWuzqULWBYJnjNgLbpqyThQLNX2WXu6qXNzkrg7hqHQ2XdLabHjrwPW6bpUPfiK%2FeIe2miNVv5N0zSNl9KYU5tZ87WXeJVPXJiupTypMfhxQWFWN8HCOaPX%2BFK4nNux3uqbT2DERSIy0BOi2vnajSt6WQN%2FbRSx4TInWm4veDRYLNDXFoin1xvOAgmjo55Gxk0EkyJzogIOQamlH5scpbBBoEwEYiGw%2B17tYY2LS3JpTNkPg7k9aemXQQCExlLPOFPEH%2BVzYEquP91x85L2gUnOY8jBKzsaLFQ1whg%3D%3D&response-content-type=text%2Fhtml;)
-    
 
 3. [ZORVYN SCAM!!! CEO's FAKE EDUCATION DEGREE](https://www.reddit.com/r/InternshipsIndia/comments/1sg0g0n/zorvyn_scam_ceos_fake_education_degree/) - SCAM ALERT. Over the past few weeks, Zorvyn FinTech has been aggressively hiring interns with stipen...
 
