@@ -1,112 +1,42 @@
-# 🛡️ SOC Analyst Investigation Portfolio
+# SOC Investigation Portfolio
 
-## 📌 Overview
-This repository contains structured SOC-style investigations based on packet captures, network traffic, and log analysis.  
-Each case is written as a professional incident report focused on identifying suspicious activity, tracking attacker behavior, and building a clear timeline of events.
+Seven end-to-end SOC investigations written as incident reports: what the telemetry showed, what I pivoted on, what the evidence supported, and what it could not prove.
 
-The goal is to demonstrate practical investigation and reporting skills used in real Security Operations Center (SOC) environments.
+Each case is a self-contained report built from packet captures, Windows event logs and host artefacts, following the same triage → pivot → timeline → IOCs → ATT&CK → report workflow a Tier-1/Tier-2 analyst runs.
 
----
+## Start here
 
-## 🧠 Skills Demonstrated
-- 🧪 PCAP analysis using Wireshark  
-- 🌐 Network traffic investigation  
-- 🚨 Suspicious IP/domain identification  
-- 🔎 DNS and HTTP traffic analysis  
-- 📂 File and stream reconstruction  
-- 🕒 Attack timeline creation  
-- 📍 IOC identification  
-- 🗺️ MITRE ATT&CK mapping  
-- 📝 Incident reporting  
-- 🕵️ Basic threat hunting workflow  
+| # | Case | Scenario | Primary evidence |
+|:--:|---|---|---|
+| 1 | [Phishing Email Incident — PhishNet](Phishing%20Email%20Investigation/report.md) | Vendor-impersonation email delivering a malicious attachment | Mail headers, attachment analysis |
+| 2 | [Backup Server Compromise — Telly](Linux%20Server%20Investigation/report.md) | Telnet-vulnerable backup server → root → customer database exfiltration | PCAP, Linux logs, command history |
+| 3 | [LLMNR Poisoning — Noxious](LLMNR%20Poisoning%20Investigation/report.md) | Rogue host poisoning LLMNR in Active Directory to capture NTLM authentication | PCAP, NTLM challenge/response |
+| 4 | [Web Exploitation & Privilege Escalation — Packet Puzzle](Network%20Intrusion%20Investigation/report.md) | PHP RCE, payload staging, GodPotato privilege escalation | PCAP, payload analysis |
+| 5 | [BonitaSoft Exploitation — Meerkat](Bonitasoft%20Compromise%20Investigation/report.md) | Credential stuffing plus CVE-2022-25237 auth bypass → RCE, SSH key persistence | Web logs, host artefacts |
+| 6 | [Web Shell & Java Exploitation — JustSomePages](Web%20Shell%20%26%20Java%20Exploitation%20Investigation/report.md) | JSP web shell deployment with WAF evasion and PowerShell lateral movement | PCAP, WAF/EDR telemetry |
+| 7 | [Zorvyn FinTech Internship Campaign — Evasive PDF Analysis](Zorvyn%20FinTech%20Remote%20Internship%20Campaign%20%E2%80%94%20Evasive%20PDF%20Analysis/report.md) | Live fraud campaign aimed at Indian students; offer-letter PDF with evasive behaviour | OSINT, sandbox output, PDF internals |
 
----
+## Report structure
 
-## 🛠️ Tools Used
-- Wireshark  
-- TCPDump  
-- Windows Event Logs  
-- Sysmon (case dependent)  
-- VirusTotal  
-- Public threat intelligence sources  
+Every folder holds a single `report.md` with the same sequence:
 
----
+- Case overview and scoping
+- Investigation steps, including the queries and filters actually used
+- Findings with the supporting evidence
+- Reconstructed timeline
+- Indicators of compromise
+- MITRE ATT&CK mapping
+- Conclusion, including what the telemetry did not show
 
-## 🔬 Investigation Methodology
-Each investigation follows a consistent SOC workflow:
+## Tools
 
-1. 📥 Initial triage of traffic or logs  
-2. ❗ Identify anomalies  
-3. 🔁 Pivot on suspicious IPs/domains/files  
-4. 🧩 Reconstruct attacker actions  
-5. 🕒 Build timeline  
-6. 📍 Identify indicators of compromise  
-7. 🗺️ Map activity to MITRE ATT&CK  
-8. 📝 Write structured incident report  
+Wireshark, tcpdump, Windows Event Viewer, Sysmon (case dependent), VirusTotal and public threat-intelligence sources.
 
----
+## Scope and limits
 
-## 📂 Investigation Cases
+- These are reconstructions from provided captures and lab telemetry, not live enterprise incidents. Where a capture is ambiguous, the report says so instead of asserting a verdict.
+- Timestamps appear as they do in the source evidence and are not normalised across cases.
+- Case 7 covers a real, publicly reported campaign. It contains only what the actors published themselves; no victim identities are included.
+- Screenshots appear where they carry evidential value. Some steps are described in text only.
 
-### • Phishing Email Incident — PhishNet
-SOC investigation of a vendor-impersonation phishing email delivering a malicious attachment.  
-Includes manual analysis and tool-assisted detection workflow.
-Report link → [View Report](https://github.com/EclipseManic/SOC-Investigation-Portfolio/blob/main/Phishing%20Email%20Investigation/report.md)
-
-
-### • Backup Server Compromise — Telly
-SOC/DFIR investigation of a compromised backup server where an attacker exploited a Telnet vulnerability to gain root access, establish persistence, and exfiltrate a sensitive customer database.
-Includes PCAP network analysis, command reconstruction, persistence tracking, and data-exfiltration validation workflow.
-Report link → [View Report](https://github.com/EclipseManic/SOC-Investigation-Portfolio/blob/main/Linux%20Server%20Investigation/report.md)
-
-
-### • LLMNR Poisoning Attack — Noxious
-Network forensics investigation of a rogue device performing LLMNR poisoning inside an Active Directory environment to capture NTLM authentication attempts after a mistyped file-share request.  
-Includes PCAP analysis, rogue host identification, NTLM challenge/response reconstruction, credential-exposure validation, and lateral-movement risk assessment workflow.  
-Report link → [View Report](https://github.com/EclipseManic/SOC-Investigation-Portfolio/blob/main/LLMNR%20Poisoning%20Investigation/report.md)
-
-
-### • Web Exploitation & Privilege Escalation — Packet Puzzle
-SOC investigation of an internal compromise where an attacker performed reconnaissance, exploited a vulnerable PHP service to gain RCE, deployed payloads, and attempted privilege escalation using GodPotato.  
-Includes PCAP analysis, exploit reconstruction, command tracking, payload analysis, and MITRE ATT&CK mapping workflow.  
-Report → [View Report](https://github.com/EclipseManic/SOC-Investigation-Portfolio/blob/main/Network%20Intrusion%20Investigation/report.md)
-
-
-### • BonitaSoft Exploitation — Meerkat
-SOC investigation of a Business Management Platform compromise. The attacker performed credential stuffing to gain initial access, exploited CVE-2022-25237 (Authorization Bypass) to achieve RCE, and established persistence via SSH key injection using a text-sharing site.
-Report link → [View Report](https://github.com/EclipseManic/SOC-Investigation-Portfolio/blob/main/Bonitasoft%20Compromise%20Investigation/report.md)
-
-
-### • Web Shell & Java Exploitation — JustSomePages
-SOC investigation of a Red Team attack simulation utilizing advanced JSP web shells and Java-based exploitation techniques.
-Includes PCAP analysis, WAF evasion detection, attack chain reconstruction (from encrypted payload delivery to PowerShell lateral movement), and the development of specific SIEM/EDR detection strategies.
-Report link  → [View Report](https://github.com/EclipseManic/SOC-Investigation-Portfolio/blob/main/Web%20Shell%20%26%20Java%20Exploitation%20Investigation/report.md)
-
-### • Zorvyn FinTech Remote Internship Campaign — Evasive PDF Analysis
-Multiple Indian students and freshers have reported receiving highly attractive remote internship offers from an entity calling itself “Zorvyn FinTech Pvt. Ltd.”, typically promising ₹35–45K/month stipends and PPOs up to ₹11–14 LPA for roles such as Cybersecurity Analyst, Data Analyst, Frontend Developer, and Backend Developer. Public OSINT and sandbox analysis of one such offer-letter PDF (SHA256 21a28029acd9c884df80d11c9f9d355d4c2e4b183a5d7e35f84ce3589b453bc4) show that the campaign combines social engineering, legal misrepresentation, evasive malware behavior, and aggressive collection of banking and identity data.\
-Report link  → [View Report](https://github.com/EclipseManic/SOC-Investigation-Portfolio/blob/main/Zorvyn%20FinTech%20Remote%20Internship%20Campaign%20%E2%80%94%20Evasive%20PDF%20Analysis/report.md)
-
-(Additional investigations will be added over time.)
-
----
-
-## 🧾 Report Structure
-Each investigation folder contains:
-
-- `report.md` → Full investigation report
-
-Every report includes:
-- Case overview  
-- Investigation steps  
-- Key findings  
-- Timeline  
-- MITRE ATT&CK mapping  
-- Evidence screenshots  
-- Conclusion  
-
----
-
-## 🎯 Purpose
-This repository showcases hands-on SOC investigation skills including traffic analysis, threat detection, and incident reporting.  
-It is designed to reflect real-world analyst workflows and investigation thinking.
-
+Reports written by Manichand Gupta. AI assistants were used for editing and formatting; the analysis, pivots and conclusions are my own.
