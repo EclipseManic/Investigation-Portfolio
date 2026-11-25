@@ -40,3 +40,5 @@ Wireshark, tcpdump, Windows Event Viewer, Sysmon (case dependent), VirusTotal an
 - Screenshots appear where they carry evidential value. Some steps are described in text only.
 
 Reports written by Manichand Gupta. AI assistants were used for editing and formatting; the analysis, pivots and conclusions are my own.
+
+Part of my [SOC and detection portfolio](https://github.com/EclipseManic) — the profile README maps the lab, investigation, OSINT and tooling work.
