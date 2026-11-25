@@ -1,6 +1,6 @@
-# 📧 Phishing Email Incident Investigation — Sherlock lab investigation
+# Phishing Email Incident Investigation — Sherlock lab investigation
 
-## 🧾 Case Overview
+## Case Overview
 
 An accounting team received an urgent payment request appearing to originate from a known vendor. The message contained a payment link and a compressed attachment disguised as an invoice. The objective of this investigation was to determine whether the email was malicious, identify attacker infrastructure, analyze the attachment, and confirm the attacker’s intent.
 
@@ -8,7 +8,7 @@ This investigation was conducted using manual email analysis techniques supporte
 
 ---
 
-## 🎯 Investigation Objectives
+## Investigation Objectives
 
 * Identify true sender origin
 * Validate email authentication and routing
@@ -19,7 +19,7 @@ This investigation was conducted using manual email analysis techniques supporte
 
 ---
 
-## 🛠️ Tools Used
+## Tools Used
 
 * Manual email header analysis
 * Base64 decoding using certutil
@@ -28,11 +28,11 @@ This investigation was conducted using manual email analysis techniques supporte
 * **Advanced Phishing Mail Detector (custom tool)**
 
 Custom tool repository:
-[https://github.com/EclipseManic/Advance_Phishing_Mail_Detector](https://github.com/EclipseManic/Advance_Phishing_Mail_Detector)
+[https://github.com/EclipseManic/Advance_Phishing_Mail_Detector](https://github.com/EclipseManic/Advance_Phishing_Mail_Detector_CLI
 
 ---
 
-## 🤖 Tool-Assisted Detection
+## Tool-Assisted Detection
 
 A custom automation tool, **Advanced Phishing Mail Detector**, was used to assist with triage and validation of phishing indicators during the investigation.
 
@@ -58,7 +58,7 @@ Evidence:  ![1770791819040](https://github.com/user-attachments/assets/431a0b29-
 
 ---
 
-## ⏱️ Automation Impact on Workflow
+## ⏱ Automation Impact on Workflow
 
 Manual analysis of all email indicators requires checking headers, domains, attachments, and message content individually. The custom tool automated these checks and produced a structured summary of risks.
 
@@ -73,7 +73,7 @@ Automation did not replace analysis but accelerated detection and improved inves
 
 ---
 
-## 🔍 Investigation Process
+## Investigation Process
 
 ### 1. Header Analysis
 
@@ -146,7 +146,7 @@ Evidence:    ![1770791819382](https://github.com/user-attachments/assets/d613e7b
 
 ---
 
-## 📍 Key Findings
+## Key Findings
 
 * Vendor impersonation phishing email
 * Malicious ZIP attachment
@@ -157,7 +157,7 @@ Evidence:    ![1770791819382](https://github.com/user-attachments/assets/d613e7b
 
 ---
 
-## 🕒 Attack Flow
+## Attack Flow
 
 | Step | Activity                         |
 | ---- | -------------------------------- |
@@ -169,13 +169,13 @@ Evidence:    ![1770791819382](https://github.com/user-attachments/assets/d613e7b
 
 ---
 
-## 🗺️ MITRE ATT&CK Mapping
+## MITRE ATT&CK Mapping
 
 **T1566.001 — Phishing: Spearphishing Attachment**
 
 ---
 
-## 🚨 Indicators of Compromise
+## Indicators of Compromise
 
 * 45.67.89.10
 * 203.0.113.25
@@ -188,7 +188,7 @@ Evidence:    ![1770791819382](https://github.com/user-attachments/assets/d613e7b
 
 ---
 
-## 🧠 Analyst Assessment
+## Analyst Assessment
 
 The email represents a vendor payment phishing attack delivering a malicious attachment disguised as an invoice. The attacker used domain impersonation and urgency to pressure the recipient into opening the file.
 
@@ -196,7 +196,7 @@ Manual analysis confirmed suspicious infrastructure and payload delivery. The cu
 
 ---
 
-## 🛡️ Recommended Response
+## Recommended Response
 
 * Block sender IP and domain
 * Block phishing domain
@@ -207,7 +207,7 @@ Manual analysis confirmed suspicious infrastructure and payload delivery. The cu
 
 ---
 
-## 📌 Conclusion
+## Conclusion
 
 The investigation confirmed a phishing campaign delivering malware through a disguised invoice attachment. The case demonstrates practical SOC workflow including email header analysis, payload recovery, indicator extraction, and tool-assisted detection.
 

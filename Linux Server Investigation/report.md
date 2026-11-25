@@ -1,6 +1,6 @@
-# 🛰️ Telly – DFIR Investigation Report
+# Telly – DFIR Investigation Report
 
-## 📌 Case Overview
+## Case Overview
 
 A DLP alert flagged suspicious outbound activity from a backup server. Network telemetry was analyzed to determine how the attacker gained access, what actions were performed, and what data was exfiltrated.
 
@@ -11,7 +11,7 @@ A DLP alert flagged suspicious outbound activity from a backup server. Network t
 
 ---
 
-## 🧭 Investigation Summary
+## Investigation Summary
 
 * Initial access through vulnerable Telnet service
 * Root shell obtained
@@ -22,7 +22,7 @@ A DLP alert flagged suspicious outbound activity from a backup server. Network t
 
 ---
 
-## 1️⃣ Initial Access – Telnet Exploit
+## 1⃣ Initial Access – Telnet Exploit
 
 The attacker connected to the backup server using Telnet and successfully gained root access.
 
@@ -41,7 +41,7 @@ Telnet session establishment visible in packet capture.
 
 ---
 
-## 2️⃣ Host Identification
+## 2⃣ Host Identification
 
 DHCP traffic reveals hostname of compromised machine.
 
@@ -57,7 +57,7 @@ DHCP packet shows hostname field.
 
 ---
 
-## 3️⃣ Post-Exploitation Activity
+## 3⃣ Post-Exploitation Activity
 
 Attacker navigated system directories and executed commands over Telnet.
 
@@ -79,7 +79,7 @@ sudo useradd -m -s /bin/bash cleanupsvc
 
 ---
 
-## 4️⃣ Persistence Installation
+## 4⃣ Persistence Installation
 
 Attacker downloaded a persistence script from GitHub.
 
@@ -97,7 +97,7 @@ Download confirmed via HTTP stream.
 
 ---
 
-## 5️⃣ Command & Control
+## 5⃣ Command & Control
 
 Persistence script connected to external C2 server.
 
@@ -107,7 +107,7 @@ Indicates long-term remote access channel.
 
 ---
 
-## 6️⃣ Data Exfiltration
+## 6⃣ Data Exfiltration
 
 Sensitive database file transferred out.
 
@@ -124,7 +124,7 @@ File observed in exported HTTP objects list.
 
 ---
 
-## 7️⃣ Data Validation (Compliance)
+## 7⃣ Data Validation (Compliance)
 
 Breached database contained customer payment data.
 
@@ -137,7 +137,7 @@ This confirms sensitive financial data exposure.
 
 ---
 
-## ⏱️ Attack Timeline
+## ⏱ Attack Timeline
 
 | Time        | Event                            |
 | ----------- | -------------------------------- |
@@ -148,7 +148,7 @@ This confirms sensitive financial data exposure.
 
 ---
 
-## 🚨 Impact
+## Impact
 
 * Root access compromise
 * Persistent attacker access
@@ -157,7 +157,7 @@ This confirms sensitive financial data exposure.
 
 ---
 
-## 🛡️ Recommendations
+## Recommendations
 
 * Disable Telnet permanently
 * Patch CVE-2026-24061
@@ -170,7 +170,7 @@ This confirms sensitive financial data exposure.
 
 ---
 
-## 🧾 Conclusion
+## Conclusion
 
 The attacker exploited an exposed Telnet service, gained root access, created a persistent backdoor account, installed a remote access script, and exfiltrated a sensitive customer database within minutes. The system lacked service hardening and outbound monitoring, allowing rapid compromise and data theft.
 

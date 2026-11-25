@@ -1,6 +1,6 @@
-# 🧩 Packet Puzzle — SOC Investigation Report
+# Packet Puzzle — SOC Investigation Report
 
-## 📌 Overview
+## Overview
 
 Suspicious internal network activity was detected at a cryptocurrency trading company. A packet capture was exported for analysis to determine whether the environment was compromised and to reconstruct attacker actions.
 
@@ -13,7 +13,7 @@ This investigation confirms successful exploitation of a vulnerable web service,
 
 ---
 
-## 🧠 Skills Demonstrated
+## Skills Demonstrated
 
 * PCAP analysis
 * Port-scan reconstruction
@@ -26,7 +26,7 @@ This investigation confirms successful exploitation of a vulnerable web service,
 
 ---
 
-## 🛠️ Tools Used
+## Tools Used
 
 * Wireshark
 * TCP Stream analysis
@@ -34,7 +34,7 @@ This investigation confirms successful exploitation of a vulnerable web service,
 
 ---
 
-## 🧭 Investigation Summary
+## Investigation Summary
 
 * Attacker performed internal port scan
 * 8 services identified as open
@@ -46,7 +46,7 @@ This investigation confirms successful exploitation of a vulnerable web service,
 
 ---
 
-## 1️⃣ Reconnaissance
+## 1⃣ Reconnaissance
 
 The attacker at **192.168.170.128** scanned the victim host **192.168.170.130**.
 
@@ -60,7 +60,7 @@ Evidence:
 
 ---
 
-## 2️⃣ Exploitation
+## 2⃣ Exploitation
 
 HTTP traffic shows exploitation of PHP-CGI argument injection.
 
@@ -82,7 +82,7 @@ Evidence:
 
 ---
 
-## 3️⃣ Initial Foothold
+## 3⃣ Initial Foothold
 
 Attacker executed commands on the host via web shell.
 
@@ -98,7 +98,7 @@ Evidence:
 
 ---
 
-## 4️⃣ Payload Download
+## 4⃣ Payload Download
 
 Attacker downloaded a reverse shell payload.
 
@@ -119,7 +119,7 @@ Evidence:
 
 ---
 
-## 5️⃣ Privilege Escalation Attempt
+## 5⃣ Privilege Escalation Attempt
 
 Attacker executed:
 
@@ -138,7 +138,7 @@ Evidence:
 
 ---
 
-## 6️⃣ Escalation Failure
+## 6⃣ Escalation Failure
 
 The attempt failed with error:
 
@@ -151,7 +151,7 @@ Evidence:
 
 ---
 
-## ⏱️ Timeline
+## ⏱ Timeline
 
 | Time     | Event                     |
 | -------- | ------------------------- |
@@ -164,7 +164,7 @@ Evidence:
 
 ---
 
-## 📍 Indicators of Compromise
+## Indicators of Compromise
 
 Attacker IP: 192.168.170.128
 Victim IP: 192.168.170.130
@@ -174,7 +174,7 @@ Reverse shell: nc64.exe
 
 ---
 
-## 🗺️ MITRE ATT&CK Mapping
+## MITRE ATT&CK Mapping
 
 | Technique                 | ID    |
 | ------------------------- | ----- |
@@ -185,7 +185,7 @@ Reverse shell: nc64.exe
 
 ---
 
-## 🚨 Impact
+## Impact
 
 * Remote code execution achieved
 * Attacker gained shell access
@@ -195,7 +195,7 @@ Reverse shell: nc64.exe
 
 ---
 
-## 🛡️ Recommendations
+## Recommendations
 
 * Patch PHP to fixed version
 * Monitor internal scanning
@@ -206,7 +206,7 @@ Reverse shell: nc64.exe
 
 ---
 
-## 🧾 Conclusion
+## Conclusion
 
 The attacker exploited a vulnerable PHP service to gain remote code execution, downloaded tools for persistence and privilege escalation, and attempted to elevate privileges using GodPotato. Although the escalation failed, the host was fully compromised and required containment and remediation.
 

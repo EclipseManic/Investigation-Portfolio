@@ -1,6 +1,6 @@
-# 🧪 Noxious — LLMNR Poisoning Investigation
+# Noxious — LLMNR Poisoning Investigation
 
-## 📌 Case Overview
+## Case Overview
 
 An IDS alert reported unusual LLMNR traffic inside the internal Active Directory VLAN. This typically indicates a rogue device attempting to intercept name‑resolution requests and capture credentials.
 
@@ -13,7 +13,7 @@ A packet capture from the time of the alert was analyzed to confirm whether an L
 
 ---
 
-## 🎯 Objectives
+## Objectives
 
 * Identify rogue system
 * Confirm LLMNR poisoning
@@ -24,7 +24,7 @@ A packet capture from the time of the alert was analyzed to confirm whether an L
 
 ---
 
-## 🧭 Key Findings
+## Key Findings
 
 * Rogue Responder machine present in network
 * LLMNR poisoning confirmed
@@ -35,7 +35,7 @@ A packet capture from the time of the alert was analyzed to confirm whether an L
 
 ---
 
-## 🌐 Environment Details
+## Environment Details
 
 | Item              | Value           |
 | ----------------- | --------------- |
@@ -47,7 +47,7 @@ A packet capture from the time of the alert was analyzed to confirm whether an L
 
 ---
 
-## 1️⃣ Rogue Device Identification
+## 1⃣ Rogue Device Identification
 
 Analysis of LLMNR traffic showed responses coming from a non‑domain host.
 
@@ -66,7 +66,7 @@ This indicates a rogue system running a poisoning tool (commonly Responder).
 
 ---
 
-## 2️⃣ LLMNR Poisoning Trigger
+## 2⃣ LLMNR Poisoning Trigger
 
 The victim attempted to access a network share but mistyped the hostname:
 
@@ -83,7 +83,7 @@ The rogue system replied first and forced authentication.
 
 ---
 
-## 3️⃣ Credential Exposure
+## 3⃣ Credential Exposure
 
 NTLM authentication traffic shows the victim attempting to authenticate to the rogue system.
 
@@ -105,7 +105,7 @@ NTLM uses a challenge‑response mechanism. The attacker captures a hash, not th
 
 ---
 
-## 4️⃣ NTLM Negotiation Data
+## 4⃣ NTLM Negotiation Data
 
 From NTLM packets, the following values were extracted:
 
@@ -126,7 +126,7 @@ These values can be used for offline cracking.
 
 ---
 
-## 5️⃣ Authentication Context
+## 5⃣ Authentication Context
 
 The authentication attempt was triggered when the victim tried to access:
 
@@ -142,7 +142,7 @@ No plaintext password is visible in network traffic because NTLM does not send t
 
 ---
 
-## ⏱️ Timeline
+## ⏱ Timeline
 
 | Time     | Event                                |
 | -------- | ------------------------------------ |
@@ -153,7 +153,7 @@ No plaintext password is visible in network traffic because NTLM does not send t
 
 ---
 
-## 📍 Indicators of Compromise
+## Indicators of Compromise
 
 **IP:** 172.17.79.135
 **Hostname:** kali
@@ -162,7 +162,7 @@ No plaintext password is visible in network traffic because NTLM does not send t
 
 ---
 
-## 🗺️ MITRE ATT&CK Mapping
+## MITRE ATT&CK Mapping
 
 | Technique               | ID        |
 | ----------------------- | --------- |
@@ -173,7 +173,7 @@ No plaintext password is visible in network traffic because NTLM does not send t
 
 ---
 
-## 🚨 Impact
+## Impact
 
 * Username exposed
 * NTLM authentication captured
@@ -182,7 +182,7 @@ No plaintext password is visible in network traffic because NTLM does not send t
 
 ---
 
-## 🛡️ Recommendations
+## Recommendations
 
 * Disable LLMNR via Group Policy
 * Disable NetBIOS over TCP/IP
@@ -193,7 +193,7 @@ No plaintext password is visible in network traffic because NTLM does not send t
 
 ---
 
-## 🧾 Conclusion
+## Conclusion
 
 The investigation confirmed an LLMNR poisoning attack inside the internal network.
 A rogue system responded to name‑resolution requests and captured NTLM authentication attempts after a user mistyped a file share path.

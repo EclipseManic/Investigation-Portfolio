@@ -1,6 +1,6 @@
-# 🦦 Bonitasoft Compromise Investigation — Meerkat
+# Bonitasoft Compromise Investigation — Meerkat
 
-## 📌 Case Overview
+## Case Overview
 
 **Sherlock Scenario:** Meerkat (Hack The Box)
 
@@ -10,7 +10,7 @@ This investigation confirms a successful credential stuffing attack followed by 
 
 ---
 
-## 🧭 Investigation Summary
+## Investigation Summary
 
 * **Initial Vector:** Credential stuffing attack against web login portal
 * **Vulnerability:** Authorization bypass in BonitaSoft (CVE‑2022‑25237)
@@ -20,7 +20,7 @@ This investigation confirms a successful credential stuffing attack followed by 
 
 ---
 
-## 1️⃣ Reconnaissance & Initial Access
+## 1⃣ Reconnaissance & Initial Access
 
 **Attack Type:** Credential Stuffing
 **Target Application:** BonitaSoft (Business Process Management)
@@ -41,7 +41,7 @@ The PCAP shows rapid sequential login attempts with different usernames, consist
 
 ---
 
-## 2️⃣ Vulnerability Identification
+## 2⃣ Vulnerability Identification
 
 After successful authentication, Suricata generated an alert tied to a known BonitaSoft exploit.
 
@@ -58,7 +58,7 @@ Suricata alert confirming detection of the exploit signature.
 
 ---
 
-## 3️⃣ Exploitation & RCE
+## 3⃣ Exploitation & RCE
 
 The attacker appended the string `i18ntranslation` to API requests, bypassing authorization filters.
 
@@ -79,7 +79,7 @@ Wireshark shows the manipulated URL used to bypass access controls.
 
 ---
 
-## 4️⃣ Command Execution & Payload Delivery
+## 4⃣ Command Execution & Payload Delivery
 
 After gaining RCE, the attacker executed a command to download a persistence script.
 
@@ -97,7 +97,7 @@ The `wget` command appears in HTTP stream arguments.
 
 ---
 
-## 5️⃣ Persistence Mechanism
+## 5⃣ Persistence Mechanism
 
 The downloaded script was reconstructed from the PCAP. It appends an SSH public key to the target system.
 
@@ -124,7 +124,7 @@ Reconstructed script showing SSH key injection.
 
 ---
 
-## ⏱️ Attack Timeline
+## ⏱ Attack Timeline
 
 | Timestamp (UTC) | Event               | Description                                                   |
 | --------------- | ------------------- | ------------------------------------------------------------- |
@@ -136,7 +136,7 @@ Reconstructed script showing SSH key injection.
 
 ---
 
-## 🗺️ MITRE ATT&CK Mapping
+## MITRE ATT&CK Mapping
 
 | Tactic            | ID        | Technique                                 |
 | ----------------- | --------- | ----------------------------------------- |
@@ -147,7 +147,7 @@ Reconstructed script showing SSH key injection.
 
 ---
 
-## 🛡️ Recommendations
+## Recommendations
 
 * **Patch Management:** Update BonitaSoft to remediate CVE‑2022‑25237
 * **SSH Hardening:** Disable password auth and review `authorized_keys`
@@ -157,7 +157,7 @@ Reconstructed script showing SSH key injection.
 
 ---
 
-## 🧾 Conclusion
+## Conclusion
 
 The Forela Business Management Platform was compromised through credential stuffing and exploitation of a known BonitaSoft authorization bypass vulnerability. The attacker achieved RCE and persistence by injecting an SSH key. Use of legitimate hosting platforms for payload delivery highlights the need for strict outbound filtering and monitoring.
 
